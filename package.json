@@ -1,0 +1,15 @@
+{
+  "name": "agentclaw-node-host",
+  "version": "1.0.0",
+  "description": "AgentClaw Node Host - Connect phone to OpenClaw Gateway",
+  "main": "agentclaw-node-host.js",
+  "scripts": {
+    "start": "node agentclaw-node-host.js"
+  },
+  "dependencies": {
+    "ws": "^8.19.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
