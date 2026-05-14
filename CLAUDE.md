@@ -28,4 +28,4 @@ node agentclaw-node-host.js
 
 ## 版权声明
 
-Copyright (C) 2025 阿龙 / Long. All rights reserved.
+Copyright (C) 2025 阿龙 / Long. 963737104@qq.com

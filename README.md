@@ -398,7 +398,8 @@ AgentClaw 的实现参考了以下优秀开源项目：
 **阿龙 / Long**
 
 - GitHub: https://github.com/longxiashouji
-- Email: long@example.com
+- Email: 963737104@qq.com
+- 微信: clawai
 
 ---
 
