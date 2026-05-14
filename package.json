@@ -1,7 +1,7 @@
 {
   "name": "ai-zi-pao-node-host",
   "version": "1.0.0",
-  "description": "AI×ÔÅÜ Node Host - Connect phone to OpenClaw Gateway",
+  "description": "PhoneAgentX Node Host - Connect phone to OpenClaw Gateway",
   "main": "ai-zi-pao-node-host.js",
   "scripts": {
     "start": "node ai-zi-pao-node-host.js"
@@ -13,3 +13,4 @@
     "node": ">=18.0.0"
   }
 }
+
