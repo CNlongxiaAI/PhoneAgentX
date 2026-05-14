@@ -1,0 +1,8 @@
+*.md text=working-tree eol=lf
+*.kt text=working-tree eol=lf
+*.js text=working-tree eol=lf
+*.json text=working-tree eol=lf
+*.xml text=working-tree eol=lf
+*.kts text=working-tree eol=lf
+*.properties text=working-tree eol=lf
+*.pro text=working-tree eol=lf
