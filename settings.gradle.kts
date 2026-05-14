@@ -14,8 +14,8 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "AgentClaw"
-include(":agentclaw-app")
+rootProject.name = "phoneagentx"
+include(":phoneagentx-app")
 
 // Gradle Version Catalog compatible settings
 gradle {
