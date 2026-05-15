@@ -6,3 +6,4 @@
 *.kts text=working-tree eol=lf
 *.properties text=working-tree eol=lf
 *.pro text=working-tree eol=lf
+*.apk filter=lfs diff=lfs merge=lfs -text
