@@ -169,7 +169,16 @@ PhoneAgentX 方案：
 | Gradle | 8.4 | 8.4 |
 | Node.js | 18 | 20+ |
 
-### 步骤一：构建 App
+### 步骤一：下载安装 App
+
+**APK 下载（免编译直接安装）：**
+```
+phoneagentx-app/build/outputs/apk/debug/phoneagentx-app-debug.apk
+```
+或者在 GitHub Release 页面下载：
+https://github.com/longxiashouji/PhoneAgentX/releases
+
+### 步骤二：构建 App（可选）
 
 ```bash
 # 1. 克隆代码
