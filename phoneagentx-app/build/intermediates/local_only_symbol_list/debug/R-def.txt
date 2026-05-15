@@ -1,0 +1,35 @@
+R_DEF: Internal format may change without notice
+local
+mipmap ic_launcher
+mipmap ic_launcher_round
+string adb_not_paired
+string adb_paired
+string adb_pairing
+string ai_configuration
+string api_key
+string app_name
+string cat_daily
+string cat_entertainment
+string cat_social
+string cat_tools
+string channel_adb
+string channel_node
+string channel_skill
+string connect
+string connected
+string connecting
+string connection_status
+string disconnect
+string disconnected
+string explore_ui
+string gateway_url
+string model
+string node_enabled
+string quick_actions
+string run_skill
+string screenshot
+string settings
+string skills
+string start_pairing
+string test_operations
+style Theme.PhoneAgentX

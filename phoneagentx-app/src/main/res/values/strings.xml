@@ -3,18 +3,18 @@
     <string name="app_name">PhoneAgentX</string>
 
     <!-- Home Screen -->
-    <string name="connection_status">连接状�?/string>
-    <string name="connected">已连�?/string>
-    <string name="disconnected">未连�?/string>
-    <string name="connecting">连接�?..</string>
+    <string name="connection_status">连接状态</string>
+    <string name="connected">已连接</string>
+    <string name="disconnected">未连接</string>
+    <string name="connecting">连接中...</string>
     <string name="connect">连接</string>
     <string name="disconnect">断开</string>
 
     <!-- ADB -->
     <string name="adb_pairing">ADB 无线配对</string>
-    <string name="adb_paired">已配�?/string>
-    <string name="adb_not_paired">需要配�?ADB</string>
-    <string name="start_pairing">开始配�?/string>
+    <string name="adb_paired">已配对</string>
+    <string name="adb_not_paired">需要配对 ADB</string>
+    <string name="start_pairing">开始配对</string>
 
     <!-- Quick Actions -->
     <string name="quick_actions">快捷操作</string>
@@ -23,7 +23,7 @@
     <string name="test_operations">测试操作</string>
 
     <!-- Skills -->
-    <string name="skills">内置技�?/string>
+    <string name="skills">内置技能</string>
     <string name="run_skill">运行</string>
 
     <!-- Settings -->
@@ -37,7 +37,7 @@
     <!-- Notifications -->
     <string name="channel_adb">ADB 配对</string>
     <string name="channel_node">节点运行</string>
-    <string name="channel_skill">技能执�?/string>
+    <string name="channel_skill">技能执行</string>
 
     <!-- Skill Categories -->
     <string name="cat_social">社交</string>

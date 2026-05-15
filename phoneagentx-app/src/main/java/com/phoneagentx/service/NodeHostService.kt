@@ -9,8 +9,8 @@ import android.util.Log
 import androidx.core.app.NotificationCompat
 import com.phoneagentx.PhoneAgentXApp
 import com.phoneagentx.MainActivity
-import com.phoneagentx.R
 import kotlinx.coroutines.*
+import java.io.File
 
 class NodeHostService : Service() {
 
@@ -22,13 +22,13 @@ class NodeHostService : Service() {
 
     override fun onCreate() {
         super.onCreate()
-        Log.i(TAG, "NodeHostService 创建")
+        Log.i(TAG, "NodeHostService created")
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        Log.i(TAG, "NodeHostService 启动")
+        Log.i(TAG, "NodeHostService starting")
 
-        val notification = createNotification("PhoneAgentX 节点服务运行�?)
+        val notification = createNotification("PhoneAgentX Node Running")
         startForeground(NOTIFICATION_ID, notification)
 
         scope.launch {
@@ -40,12 +40,11 @@ class NodeHostService : Service() {
 
     private fun startNodeHost() {
         try {
-            // 启动 Node Host 进程
-            // Node.js 环境需要在 APK 中预�?            val nodePath = filesDir.resolve("node/bin/node")
-            val scriptPath = assetsFilePath("PhoneAgentX-node-host.js")
+            val nodePath = File(filesDir, "node/bin/node")
+            val scriptPath = extractAsset("phoneagentx-node-host.js")
 
             if (!nodePath.exists()) {
-                Log.e(TAG, "Node.js 未找到，请先安装 OpenClaw 运行�?)
+                Log.e(TAG, "Node.js not found. Please install OpenClaw runtime first.")
                 return
             }
 
@@ -58,7 +57,6 @@ class NodeHostService : Service() {
 
             nodeProcess = processBuilder.start()
 
-            // 读取输出日志
             nodeProcess?.inputStream?.bufferedReader()?.forEachLine { line ->
                 Log.d(TAG, "[Node] $line")
             }
@@ -67,12 +65,12 @@ class NodeHostService : Service() {
                 Log.e(TAG, "[Node Error] $line")
             }
         } catch (e: Exception) {
-            Log.e(TAG, "启动 Node Host 失败: ${e.message}")
+            Log.e(TAG, "Failed to start Node Host: ${e.message}")
         }
     }
 
-    private fun assetsFilePath(assetName: String): String {
-        // �?assets 提取文件到缓存目�?        val destFile = cacheDir.resolve(assetName)
+    private fun extractAsset(assetName: String): File {
+        val destFile = File(cacheDir, assetName)
         if (!destFile.exists()) {
             assets.open(assetName).use { input ->
                 destFile.outputStream().use { output ->
@@ -80,7 +78,7 @@ class NodeHostService : Service() {
                 }
             }
         }
-        return destFile.absolutePath
+        return destFile
     }
 
     private fun createNotification(content: String): Notification {
@@ -101,7 +99,7 @@ class NodeHostService : Service() {
     }
 
     override fun onDestroy() {
-        Log.i(TAG, "NodeHostService 停止")
+        Log.i(TAG, "NodeHostService stopping")
         nodeProcess?.destroy()
         scope.cancel()
         super.onDestroy()

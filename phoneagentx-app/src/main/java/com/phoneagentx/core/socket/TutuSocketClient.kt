@@ -10,6 +10,10 @@ import java.io.OutputStream
 import java.net.Socket
 import java.util.concurrent.ConcurrentHashMap
 
+enum class ConnectionState {
+    DISCONNECTED, CONNECTING, CONNECTED, AUTHENTICATED, ERROR
+}
+
 class TutuSocketClient(
     private val host: String = "127.0.0.1",
     private val port: Int = 28200
@@ -50,17 +54,15 @@ class TutuSocketClient(
                 outputStream = socket!!.getOutputStream()
 
                 _connectionState.value = ConnectionState.CONNECTED
-                Log.i(TAG, "Socket 已连�?)
+                Log.i(TAG, "Socket connected")
 
-                // 启动读取循环
                 startReading()
 
-                // 发送认证（如果需要）
                 if (!token.isNullOrEmpty()) {
                     authenticate(token)
                 }
             } catch (e: Exception) {
-                Log.e(TAG, "连接失败: ${e.message}")
+                Log.e(TAG, "Connection failed: ${e.message}")
                 _connectionState.value = ConnectionState.ERROR
             }
         }
@@ -78,11 +80,11 @@ class TutuSocketClient(
                         val msg = json.parseToJsonElement(line).jsonObject
                         handleMessage(msg)
                     } catch (e: Exception) {
-                        Log.w(TAG, "解析消息失败: ${e.message}")
+                        Log.w(TAG, "Parse failed: ${e.message}")
                     }
                 }
             } catch (e: Exception) {
-                Log.e(TAG, "读取循环结束: ${e.message}")
+                Log.e(TAG, "Read loop ended: ${e.message}")
                 _connectionState.value = ConnectionState.DISCONNECTED
             }
         }
@@ -90,16 +92,15 @@ class TutuSocketClient(
 
     private fun handleMessage(msg: JsonObject) {
         val type = msg["type"]?.jsonPrimitive?.contentOrNull ?: return
-        Log.d(TAG, "收到消息: $type")
+        Log.d(TAG, "Received: $type")
 
-        // 检查是否是请求的响�?        val reqId = msg["reqId"]?.jsonPrimitive?.contentOrNull
+        val reqId = msg["reqId"]?.jsonPrimitive?.contentOrNull
         if (reqId != null && pendingRequests.containsKey(reqId)) {
             val deferred = pendingRequests.remove(reqId)
             deferred?.complete(msg)
             return
         }
 
-        // 广播消息
         scope.launch { _messages.emit(msg) }
     }
 
@@ -118,7 +119,7 @@ class TutuSocketClient(
         return try {
             withTimeoutOrNull(timeoutMs) { deferred.await() }
         } catch (e: Exception) {
-            Log.w(TAG, "请求超时: $reqId")
+            Log.w(TAG, "Request timeout: $reqId")
             pendingRequests.remove(reqId)
             null
         }
@@ -127,30 +128,29 @@ class TutuSocketClient(
     fun sendFireAndForget(cmd: JsonObject) {
         try {
             val line = cmd.toString() + "\n"
-            outputStream?.write(line.toByteArray("UTF-8"))
+            outputStream?.write(line.toByteArray(charset("UTF-8")))
             outputStream?.flush()
-            Log.d(TAG, "发�? ${cmd["type"]}")
         } catch (e: Exception) {
-            Log.e(TAG, "发送失�? ${e.message}")
+            Log.e(TAG, "Send failed: ${e.message}")
         }
     }
 
     private suspend fun authenticate(token: String) {
-        val cmd = buildJsonObject {
-            put("type", "auth")
+        val resp = sendAndWait(buildJsonObject {
+            put("type", "authenticate")
             put("token", token)
             put("reqId", nextReqId())
-        }
-        val resp = sendAndWait(cmd, 5000)
+        })
         if (resp?.get("success")?.jsonPrimitive?.booleanOrNull == true) {
             _connectionState.value = ConnectionState.AUTHENTICATED
-            Log.i(TAG, "认证成功")
+            Log.i(TAG, "Authenticated")
         }
     }
 
     fun disconnect() {
         readJob?.cancel()
-        socket?.close()
+        readJob = null
+        try { socket?.close() } catch (e: Exception) { }
         socket = null
         reader = null
         outputStream = null
@@ -159,9 +159,7 @@ class TutuSocketClient(
     }
 
     fun isConnected() = _connectionState.value == ConnectionState.CONNECTED ||
-                        _connectionState.value == ConnectionState.AUTHENTICATED
-}
+                         _connectionState.value == ConnectionState.AUTHENTICATED
 
-enum class ConnectionState {
-    DISCONNECTED, CONNECTING, CONNECTED, AUTHENTICATED, ERROR
+    fun hasPending(reqId: String) = pendingRequests.containsKey(reqId)
 }

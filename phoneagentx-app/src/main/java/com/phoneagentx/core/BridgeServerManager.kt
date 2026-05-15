@@ -12,7 +12,7 @@ import java.net.ServerSocket
 import java.net.Socket
 
 /**
- * Bridge Server 管理�? * HTTP (:18790) �?Socket (:28200) �?TutuGui Server
+ * Bridge Server 管理�? * HTTP (:18790) �?Socket (:28200) �?TutuGui Server
  */
 class BridgeServerManager(
     private val context: Context,
@@ -52,7 +52,7 @@ class BridgeServerManager(
         Thread {
             try {
                 serverSocket = ServerSocket(PORT)
-                Log.i(TAG, "Bridge Server 启动于端�?$PORT")
+                Log.i(TAG, "Bridge Server 启动于端�?$PORT")
 
                 while (running) {
                     try {
@@ -261,7 +261,7 @@ class BridgeServerManager(
     }
 
     suspend fun takeScreenshot(): String? {
-        val resp = handleScreenshot(buildJsonObject())
+        val resp = handleScreenshot(JsonObject(mapOf()))
         return resp["data"]?.jsonPrimitive?.contentOrNull
     }
 
@@ -290,4 +290,5 @@ class BridgeServerManager(
         socketClient.sendFireAndForget(buildJsonObject { put("type", "unsubscribe_accessibility_events"); put("reqId", socketClient.nextReqId()) })
     }
 
-    private fun getScreenSize(): Pair<Int, Int> = Pair(1080, 1920) // TODO: 从设备获�?}
+    private fun getScreenSize(): Pair<Int, Int> = Pair(1080, 1920) // TODO: 从设备获�?}
+}

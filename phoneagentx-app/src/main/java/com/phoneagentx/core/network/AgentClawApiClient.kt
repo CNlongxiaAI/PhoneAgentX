@@ -11,13 +11,10 @@ import java.net.URL
 
 class PhoneAgentXApiClient {
     private val TAG = "PhoneAgentXApiClient"
-    private val BASE_URL = "https://api.PhoneAgentX.dev" // 预留 API 端点
+    private val BASE_URL = "https://api.PhoneAgentX.dev"
 
     private val json = Json { ignoreUnknownKeys = true }
 
-    /**
-     * 获取 Skill 列表
-     */
     suspend fun getSkillList(): List<SkillItem> = withContext(Dispatchers.IO) {
         try {
             val url = URL("$BASE_URL/skills")
@@ -52,14 +49,11 @@ class PhoneAgentXApiClient {
                 emptyList()
             }
         } catch (e: Exception) {
-            Log.e(TAG, "获取 Skill 列表失败: ${e.message}")
+            Log.e(TAG, "Failed to get skill list: ${e.message}")
             emptyList()
         }
     }
 
-    /**
-     * 获取 Skill 详情
-     */
     suspend fun getSkillDetail(slug: String): SkillDetail? = withContext(Dispatchers.IO) {
         try {
             val url = URL("$BASE_URL/skills/$slug")
@@ -86,14 +80,11 @@ class PhoneAgentXApiClient {
                 null
             }
         } catch (e: Exception) {
-            Log.e(TAG, "获取 Skill 详情失败: ${e.message}")
+            Log.e(TAG, "Failed to get skill detail: ${e.message}")
             null
         }
     }
 
-    /**
-     * 报告 Skill 执行结果（匿名统计）
-     */
     suspend fun reportSkillResult(slug: String, success: Boolean, durationMs: Long) {
         withContext(Dispatchers.IO) {
             try {
@@ -108,10 +99,11 @@ class PhoneAgentXApiClient {
                 conn.outputStream.write(body.toByteArray())
                 conn.outputStream.flush()
 
-                conn.responseCode // 等待响应
+                conn.responseCode
                 conn.disconnect()
             } catch (e: Exception) {
-                // 静默失败，不影响主流�?            }
+                // Silent failure
+            }
         }
     }
 

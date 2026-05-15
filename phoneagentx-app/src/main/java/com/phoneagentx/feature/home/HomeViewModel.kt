@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.phoneagentx.PhoneAgentXApp
 import com.phoneagentx.ConnectionState
+import com.phoneagentx.core.socket.ConnectionState as SocketConnectionState
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -13,15 +14,15 @@ data class HomeUiState(
     val connectionState: ConnectionState = ConnectionState.DISCONNECTED,
     val isAdbPaired: Boolean = false,
     val quickActions: List<QuickAction> = listOf(
-        QuickAction("screenshot", "截图", "获取当前屏幕截图"),
-        QuickAction("explore", "探索界面", "AI 分析当前界面状�?),
-        QuickAction("build", "测试点击", "测试 tap �?swipe 操作")
+        QuickAction("screenshot", "Screenshot", "Capture current screen"),
+        QuickAction("explore", "Explore UI", "AI analyze current interface"),
+        QuickAction("build", "Test Ops", "Test tap/swipe operations")
     ),
     val skills: List<SkillInfo> = listOf(
-        SkillInfo("wechat-auto-reply", "微信托管", "AI 自动回复微信消息", "message-circle", "30分钟", 5000),
-        SkillInfo("browse-tiktok", "刷抖�?, "自动浏览短视频并汇报", "play-circle", "1分钟", 1500),
-        SkillInfo("check-weather", "查看天气", "获取当前天气信息", "globe", "10�?, 500),
-        SkillInfo("daily-news", "每日新闻", "获取今日新闻摘要", "star", "30�?, 1000)
+        SkillInfo("wechat-auto-reply", "WeChat Auto-Reply", "AI auto-reply WeChat messages", "message-circle", "30min", 5000),
+        SkillInfo("browse-tiktok", "Browse TikTok", "Auto browse short videos", "play-circle", "1min", 1500),
+        SkillInfo("check-weather", "Weather", "Get current weather", "globe", "10min", 500),
+        SkillInfo("daily-news", "Daily News", "Get today's news summary", "star", "30min", 1000)
     ),
     val isLoading: Boolean = false,
     val error: String? = null
@@ -54,7 +55,14 @@ class HomeViewModel : ViewModel() {
     fun refreshStatus() {
         viewModelScope.launch {
             val app = PhoneAgentXApp.instance
-            val state = app.socketClient.connectionState.value
+            val rawState = app.socketClient.connectionState.value
+            val state = when (rawState) {
+                SocketConnectionState.DISCONNECTED -> ConnectionState.DISCONNECTED
+                SocketConnectionState.CONNECTING -> ConnectionState.CONNECTING
+                SocketConnectionState.CONNECTED -> ConnectionState.CONNECTED
+                SocketConnectionState.AUTHENTICATED -> ConnectionState.AUTHENTICATED
+                SocketConnectionState.ERROR -> ConnectionState.ERROR
+            }
             _uiState.value = _uiState.value.copy(connectionState = state)
         }
     }
@@ -65,7 +73,15 @@ class HomeViewModel : ViewModel() {
             try {
                 PhoneAgentXApp.instance.socketClient.connect()
                 PhoneAgentXApp.instance.bridge.start()
-                _uiState.value = _uiState.value.copy(connectionState = PhoneAgentXApp.instance.socketClient.connectionState.value)
+                val rawState = PhoneAgentXApp.instance.socketClient.connectionState.value
+                val state = when (rawState) {
+                    SocketConnectionState.DISCONNECTED -> ConnectionState.DISCONNECTED
+                    SocketConnectionState.CONNECTING -> ConnectionState.CONNECTING
+                    SocketConnectionState.CONNECTED -> ConnectionState.CONNECTED
+                    SocketConnectionState.AUTHENTICATED -> ConnectionState.AUTHENTICATED
+                    SocketConnectionState.ERROR -> ConnectionState.ERROR
+                }
+                _uiState.value = _uiState.value.copy(connectionState = state)
             } catch (e: Exception) {
                 _uiState.value = _uiState.value.copy(connectionState = ConnectionState.ERROR, error = e.message)
             }
@@ -79,20 +95,20 @@ class HomeViewModel : ViewModel() {
     }
 
     fun startAdbPairing() {
-        // TODO: 启动 ADB 配对流程
+        // TODO: Launch ADB pairing flow
     }
 
     fun executeQuickAction(action: QuickAction) {
         viewModelScope.launch {
             when (action.icon) {
                 "screenshot" -> {
-                    // 执行截图
+                    PhoneAgentXApp.instance.bridge.takeScreenshot()
                 }
                 "explore" -> {
-                    // AI 分析界面
+                    // AI analyze interface
                 }
                 "build" -> {
-                    // 测试操作
+                    // Test operations
                 }
             }
         }
@@ -102,9 +118,9 @@ class HomeViewModel : ViewModel() {
         viewModelScope.launch {
             _uiState.value = _uiState.value.copy(isLoading = true)
             try {
-                // 加载并运�?Skill
                 val skillEngine = PhoneAgentXApp.instance.skillEngine
-                // TODO: 实际加载 Skill JSON 并运�?                _uiState.value = _uiState.value.copy(isLoading = false)
+                // TODO: Load and run skill JSON
+                _uiState.value = _uiState.value.copy(isLoading = false)
             } catch (e: Exception) {
                 _uiState.value = _uiState.value.copy(isLoading = false, error = e.message)
             }

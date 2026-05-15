@@ -1,0 +1,236 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.phoneagentx"
+4    android:versionCode="1"
+5    android:versionName="1.0.0" >
+6
+7    <uses-sdk
+8        android:minSdkVersion="28"
+9        android:targetSdkVersion="34" />
+10
+11    <!-- 网络权限 -->
+12    <uses-permission android:name="android.permission.INTERNET" />
+12-->C:\Users\long\Desktop\PhoneAgentX\phoneagentx-app\src\main\AndroidManifest.xml:6:5-67
+12-->C:\Users\long\Desktop\PhoneAgentX\phoneagentx-app\src\main\AndroidManifest.xml:6:22-64
+13    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+13-->C:\Users\long\Desktop\PhoneAgentX\phoneagentx-app\src\main\AndroidManifest.xml:7:5-79
+13-->C:\Users\long\Desktop\PhoneAgentX\phoneagentx-app\src\main\AndroidManifest.xml:7:22-76
+14    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+14-->C:\Users\long\Desktop\PhoneAgentX\phoneagentx-app\src\main\AndroidManifest.xml:8:5-76
+14-->C:\Users\long\Desktop\PhoneAgentX\phoneagentx-app\src\main\AndroidManifest.xml:8:22-73
+15
+16    <!-- ADB 相关权限（需要用户手动授权） -->
+17    <uses-permission android:name="android.permission.WAKE_LOCK" />
+17-->C:\Users\long\Desktop\PhoneAgentX\phoneagentx-app\src\main\AndroidManifest.xml:11:5-68
+17-->C:\Users\long\Desktop\PhoneAgentX\phoneagentx-app\src\main\AndroidManifest.xml:11:22-65
+18    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+18-->C:\Users\long\Desktop\PhoneAgentX\phoneagentx-app\src\main\AndroidManifest.xml:12:5-77
+18-->C:\Users\long\Desktop\PhoneAgentX\phoneagentx-app\src\main\AndroidManifest.xml:12:22-74
+19    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_SPECIAL_USE" />
+19-->C:\Users\long\Desktop\PhoneAgentX\phoneagentx-app\src\main\AndroidManifest.xml:13:5-89
+19-->C:\Users\long\Desktop\PhoneAgentX\phoneagentx-app\src\main\AndroidManifest.xml:13:22-86
+20
+21    <!-- 短信权限（用户授权） -->
+22    <uses-permission android:name="android.permission.SEND_SMS" />
+22-->C:\Users\long\Desktop\PhoneAgentX\phoneagentx-app\src\main\AndroidManifest.xml:16:5-67
+22-->C:\Users\long\Desktop\PhoneAgentX\phoneagentx-app\src\main\AndroidManifest.xml:16:22-64
+23    <uses-permission android:name="android.permission.READ_SMS" />
+23-->C:\Users\long\Desktop\PhoneAgentX\phoneagentx-app\src\main\AndroidManifest.xml:17:5-67
+23-->C:\Users\long\Desktop\PhoneAgentX\phoneagentx-app\src\main\AndroidManifest.xml:17:22-64
+24    <uses-permission android:name="android.permission.RECEIVE_SMS" />
+24-->C:\Users\long\Desktop\PhoneAgentX\phoneagentx-app\src\main\AndroidManifest.xml:18:5-70
+24-->C:\Users\long\Desktop\PhoneAgentX\phoneagentx-app\src\main\AndroidManifest.xml:18:22-67
+25
+26    <!-- 电话权限（用户授权） -->
+27    <uses-permission android:name="android.permission.CALL_PHONE" />
+27-->C:\Users\long\Desktop\PhoneAgentX\phoneagentx-app\src\main\AndroidManifest.xml:21:5-69
+27-->C:\Users\long\Desktop\PhoneAgentX\phoneagentx-app\src\main\AndroidManifest.xml:21:22-66
+28    <uses-permission android:name="android.permission.READ_CALL_LOG" />
+28-->C:\Users\long\Desktop\PhoneAgentX\phoneagentx-app\src\main\AndroidManifest.xml:22:5-72
+28-->C:\Users\long\Desktop\PhoneAgentX\phoneagentx-app\src\main\AndroidManifest.xml:22:22-69
+29
+30    <!-- 存储权限（用于APK安装） -->
+31    <uses-permission
+31-->C:\Users\long\Desktop\PhoneAgentX\phoneagentx-app\src\main\AndroidManifest.xml:25:5-26:38
+32        android:name="android.permission.READ_EXTERNAL_STORAGE"
+32-->C:\Users\long\Desktop\PhoneAgentX\phoneagentx-app\src\main\AndroidManifest.xml:25:22-77
+33        android:maxSdkVersion="32" />
+33-->C:\Users\long\Desktop\PhoneAgentX\phoneagentx-app\src\main\AndroidManifest.xml:26:9-35
+34    <uses-permission
+34-->C:\Users\long\Desktop\PhoneAgentX\phoneagentx-app\src\main\AndroidManifest.xml:27:5-28:38
+35        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+35-->C:\Users\long\Desktop\PhoneAgentX\phoneagentx-app\src\main\AndroidManifest.xml:27:22-78
+36        android:maxSdkVersion="29" />
+36-->C:\Users\long\Desktop\PhoneAgentX\phoneagentx-app\src\main\AndroidManifest.xml:28:9-35
+37
+38    <!-- 通知权限 -->
+39    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+39-->C:\Users\long\Desktop\PhoneAgentX\phoneagentx-app\src\main\AndroidManifest.xml:31:5-77
+39-->C:\Users\long\Desktop\PhoneAgentX\phoneagentx-app\src\main\AndroidManifest.xml:31:22-74
+40
+41    <permission
+41-->[androidx.core:core:1.12.0] C:\Users\long\.gradle\caches\transforms-3\feccc0da1b107c09fae1cd2a12d6c2b0\transformed\core-1.12.0\AndroidManifest.xml:22:5-24:47
+42        android:name="com.phoneagentx.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+42-->[androidx.core:core:1.12.0] C:\Users\long\.gradle\caches\transforms-3\feccc0da1b107c09fae1cd2a12d6c2b0\transformed\core-1.12.0\AndroidManifest.xml:23:9-81
+43        android:protectionLevel="signature" />
+43-->[androidx.core:core:1.12.0] C:\Users\long\.gradle\caches\transforms-3\feccc0da1b107c09fae1cd2a12d6c2b0\transformed\core-1.12.0\AndroidManifest.xml:24:9-44
+44
+45    <uses-permission android:name="com.phoneagentx.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+45-->[androidx.core:core:1.12.0] C:\Users\long\.gradle\caches\transforms-3\feccc0da1b107c09fae1cd2a12d6c2b0\transformed\core-1.12.0\AndroidManifest.xml:26:5-97
+45-->[androidx.core:core:1.12.0] C:\Users\long\.gradle\caches\transforms-3\feccc0da1b107c09fae1cd2a12d6c2b0\transformed\core-1.12.0\AndroidManifest.xml:26:22-94
+46
+47    <application
+47-->C:\Users\long\Desktop\PhoneAgentX\phoneagentx-app\src\main\AndroidManifest.xml:33:5-73:19
+48        android:name="com.phoneagentx.PhoneAgentXApp"
+48-->C:\Users\long\Desktop\PhoneAgentX\phoneagentx-app\src\main\AndroidManifest.xml:34:9-39
+49        android:allowBackup="true"
+49-->C:\Users\long\Desktop\PhoneAgentX\phoneagentx-app\src\main\AndroidManifest.xml:35:9-35
+50        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+50-->[androidx.core:core:1.12.0] C:\Users\long\.gradle\caches\transforms-3\feccc0da1b107c09fae1cd2a12d6c2b0\transformed\core-1.12.0\AndroidManifest.xml:28:18-86
+51        android:debuggable="true"
+52        android:extractNativeLibs="false"
+53        android:icon="@mipmap/ic_launcher"
+53-->C:\Users\long\Desktop\PhoneAgentX\phoneagentx-app\src\main\AndroidManifest.xml:36:9-43
+54        android:label="@string/app_name"
+54-->C:\Users\long\Desktop\PhoneAgentX\phoneagentx-app\src\main\AndroidManifest.xml:37:9-41
+55        android:roundIcon="@mipmap/ic_launcher_round"
+55-->C:\Users\long\Desktop\PhoneAgentX\phoneagentx-app\src\main\AndroidManifest.xml:38:9-54
+56        android:supportsRtl="true"
+56-->C:\Users\long\Desktop\PhoneAgentX\phoneagentx-app\src\main\AndroidManifest.xml:39:9-35
+57        android:theme="@style/Theme.PhoneAgentX" >
+57-->C:\Users\long\Desktop\PhoneAgentX\phoneagentx-app\src\main\AndroidManifest.xml:40:9-49
+58        <activity
+58-->C:\Users\long\Desktop\PhoneAgentX\phoneagentx-app\src\main\AndroidManifest.xml:43:9-51:20
+59            android:name="com.phoneagentx.MainActivity"
+59-->C:\Users\long\Desktop\PhoneAgentX\phoneagentx-app\src\main\AndroidManifest.xml:44:13-41
+60            android:exported="true"
+60-->C:\Users\long\Desktop\PhoneAgentX\phoneagentx-app\src\main\AndroidManifest.xml:45:13-36
+61            android:theme="@style/Theme.PhoneAgentX" >
+61-->C:\Users\long\Desktop\PhoneAgentX\phoneagentx-app\src\main\AndroidManifest.xml:46:13-53
+62            <intent-filter>
+62-->C:\Users\long\Desktop\PhoneAgentX\phoneagentx-app\src\main\AndroidManifest.xml:47:13-50:29
+63                <action android:name="android.intent.action.MAIN" />
+63-->C:\Users\long\Desktop\PhoneAgentX\phoneagentx-app\src\main\AndroidManifest.xml:48:17-69
+63-->C:\Users\long\Desktop\PhoneAgentX\phoneagentx-app\src\main\AndroidManifest.xml:48:25-66
+64
+65                <category android:name="android.intent.category.LAUNCHER" />
+65-->C:\Users\long\Desktop\PhoneAgentX\phoneagentx-app\src\main\AndroidManifest.xml:49:17-77
+65-->C:\Users\long\Desktop\PhoneAgentX\phoneagentx-app\src\main\AndroidManifest.xml:49:27-74
+66            </intent-filter>
+67        </activity>
+68
+69        <!-- ADB Pairing Service -->
+70        <service
+70-->C:\Users\long\Desktop\PhoneAgentX\phoneagentx-app\src\main\AndroidManifest.xml:54:9-61:19
+71            android:name="com.phoneagentx.service.AdbPairingService"
+71-->C:\Users\long\Desktop\PhoneAgentX\phoneagentx-app\src\main\AndroidManifest.xml:55:13-54
+72            android:exported="false"
+72-->C:\Users\long\Desktop\PhoneAgentX\phoneagentx-app\src\main\AndroidManifest.xml:57:13-37
+73            android:foregroundServiceType="specialUse" >
+73-->C:\Users\long\Desktop\PhoneAgentX\phoneagentx-app\src\main\AndroidManifest.xml:56:13-55
+74            <property
+74-->C:\Users\long\Desktop\PhoneAgentX\phoneagentx-app\src\main\AndroidManifest.xml:58:13-60:47
+75                android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
+75-->C:\Users\long\Desktop\PhoneAgentX\phoneagentx-app\src\main\AndroidManifest.xml:59:17-76
+76                android:value="adb_pairing" />
+76-->C:\Users\long\Desktop\PhoneAgentX\phoneagentx-app\src\main\AndroidManifest.xml:60:17-44
+77        </service>
+78
+79        <!-- PhoneAgentX Node Host Service -->
+80        <service
+80-->C:\Users\long\Desktop\PhoneAgentX\phoneagentx-app\src\main\AndroidManifest.xml:64:9-71:19
+81            android:name="com.phoneagentx.service.NodeHostService"
+81-->C:\Users\long\Desktop\PhoneAgentX\phoneagentx-app\src\main\AndroidManifest.xml:65:13-52
+82            android:exported="false"
+82-->C:\Users\long\Desktop\PhoneAgentX\phoneagentx-app\src\main\AndroidManifest.xml:67:13-37
+83            android:foregroundServiceType="specialUse" >
+83-->C:\Users\long\Desktop\PhoneAgentX\phoneagentx-app\src\main\AndroidManifest.xml:66:13-55
+84            <property
+84-->C:\Users\long\Desktop\PhoneAgentX\phoneagentx-app\src\main\AndroidManifest.xml:58:13-60:47
+85                android:name="android.app.PROPERTY_SPECIAL_USE_FGS_SUBTYPE"
+85-->C:\Users\long\Desktop\PhoneAgentX\phoneagentx-app\src\main\AndroidManifest.xml:59:17-76
+86                android:value="ai_node_host" />
+86-->C:\Users\long\Desktop\PhoneAgentX\phoneagentx-app\src\main\AndroidManifest.xml:60:17-44
+87        </service>
+88
+89        <activity
+89-->[androidx.compose.ui:ui-test-manifest:1.6.0] C:\Users\long\.gradle\caches\transforms-3\57231760cb00071a2c6de32264d7ad32\transformed\jetified-ui-test-manifest-1.6.0\AndroidManifest.xml:23:9-25:39
+90            android:name="androidx.activity.ComponentActivity"
+90-->[androidx.compose.ui:ui-test-manifest:1.6.0] C:\Users\long\.gradle\caches\transforms-3\57231760cb00071a2c6de32264d7ad32\transformed\jetified-ui-test-manifest-1.6.0\AndroidManifest.xml:24:13-63
+91            android:exported="true" />
+91-->[androidx.compose.ui:ui-test-manifest:1.6.0] C:\Users\long\.gradle\caches\transforms-3\57231760cb00071a2c6de32264d7ad32\transformed\jetified-ui-test-manifest-1.6.0\AndroidManifest.xml:25:13-36
+92        <activity
+92-->[androidx.compose.ui:ui-tooling-android:1.6.0] C:\Users\long\.gradle\caches\transforms-3\b3f86a0d011713680f70d63959a36b01\transformed\jetified-ui-tooling-release\AndroidManifest.xml:23:9-25:39
+93            android:name="androidx.compose.ui.tooling.PreviewActivity"
+93-->[androidx.compose.ui:ui-tooling-android:1.6.0] C:\Users\long\.gradle\caches\transforms-3\b3f86a0d011713680f70d63959a36b01\transformed\jetified-ui-tooling-release\AndroidManifest.xml:24:13-71
+94            android:exported="true" />
+94-->[androidx.compose.ui:ui-tooling-android:1.6.0] C:\Users\long\.gradle\caches\transforms-3\b3f86a0d011713680f70d63959a36b01\transformed\jetified-ui-tooling-release\AndroidManifest.xml:25:13-36
+95
+96        <provider
+96-->[androidx.emoji2:emoji2:1.3.0] C:\Users\long\.gradle\caches\transforms-3\acf0d806870062276778e8b9857f1e05\transformed\jetified-emoji2-1.3.0\AndroidManifest.xml:24:9-32:20
+97            android:name="androidx.startup.InitializationProvider"
+97-->[androidx.emoji2:emoji2:1.3.0] C:\Users\long\.gradle\caches\transforms-3\acf0d806870062276778e8b9857f1e05\transformed\jetified-emoji2-1.3.0\AndroidManifest.xml:25:13-67
+98            android:authorities="com.phoneagentx.androidx-startup"
+98-->[androidx.emoji2:emoji2:1.3.0] C:\Users\long\.gradle\caches\transforms-3\acf0d806870062276778e8b9857f1e05\transformed\jetified-emoji2-1.3.0\AndroidManifest.xml:26:13-68
+99            android:exported="false" >
+99-->[androidx.emoji2:emoji2:1.3.0] C:\Users\long\.gradle\caches\transforms-3\acf0d806870062276778e8b9857f1e05\transformed\jetified-emoji2-1.3.0\AndroidManifest.xml:27:13-37
+100            <meta-data
+100-->[androidx.emoji2:emoji2:1.3.0] C:\Users\long\.gradle\caches\transforms-3\acf0d806870062276778e8b9857f1e05\transformed\jetified-emoji2-1.3.0\AndroidManifest.xml:29:13-31:52
+101                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+101-->[androidx.emoji2:emoji2:1.3.0] C:\Users\long\.gradle\caches\transforms-3\acf0d806870062276778e8b9857f1e05\transformed\jetified-emoji2-1.3.0\AndroidManifest.xml:30:17-75
+102                android:value="androidx.startup" />
+102-->[androidx.emoji2:emoji2:1.3.0] C:\Users\long\.gradle\caches\transforms-3\acf0d806870062276778e8b9857f1e05\transformed\jetified-emoji2-1.3.0\AndroidManifest.xml:31:17-49
+103            <meta-data
+103-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\long\.gradle\caches\transforms-3\d9a309ad3d083a6b3ccfe39ab8ef5ad2\transformed\jetified-lifecycle-process-2.7.0\AndroidManifest.xml:29:13-31:52
+104                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+104-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\long\.gradle\caches\transforms-3\d9a309ad3d083a6b3ccfe39ab8ef5ad2\transformed\jetified-lifecycle-process-2.7.0\AndroidManifest.xml:30:17-78
+105                android:value="androidx.startup" />
+105-->[androidx.lifecycle:lifecycle-process:2.7.0] C:\Users\long\.gradle\caches\transforms-3\d9a309ad3d083a6b3ccfe39ab8ef5ad2\transformed\jetified-lifecycle-process-2.7.0\AndroidManifest.xml:31:17-49
+106            <meta-data
+106-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\long\.gradle\caches\transforms-3\d73e8c38a40f98c8ef0bd9d0aa6ebc38\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:29:13-31:52
+107                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+107-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\long\.gradle\caches\transforms-3\d73e8c38a40f98c8ef0bd9d0aa6ebc38\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:30:17-85
+108                android:value="androidx.startup" />
+108-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\long\.gradle\caches\transforms-3\d73e8c38a40f98c8ef0bd9d0aa6ebc38\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:31:17-49
+109        </provider>
+110
+111        <receiver
+111-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\long\.gradle\caches\transforms-3\d73e8c38a40f98c8ef0bd9d0aa6ebc38\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:34:9-52:20
+112            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+112-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\long\.gradle\caches\transforms-3\d73e8c38a40f98c8ef0bd9d0aa6ebc38\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:35:13-76
+113            android:directBootAware="false"
+113-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\long\.gradle\caches\transforms-3\d73e8c38a40f98c8ef0bd9d0aa6ebc38\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:36:13-44
+114            android:enabled="true"
+114-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\long\.gradle\caches\transforms-3\d73e8c38a40f98c8ef0bd9d0aa6ebc38\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:37:13-35
+115            android:exported="true"
+115-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\long\.gradle\caches\transforms-3\d73e8c38a40f98c8ef0bd9d0aa6ebc38\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:38:13-36
+116            android:permission="android.permission.DUMP" >
+116-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\long\.gradle\caches\transforms-3\d73e8c38a40f98c8ef0bd9d0aa6ebc38\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:39:13-57
+117            <intent-filter>
+117-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\long\.gradle\caches\transforms-3\d73e8c38a40f98c8ef0bd9d0aa6ebc38\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:40:13-42:29
+118                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+118-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\long\.gradle\caches\transforms-3\d73e8c38a40f98c8ef0bd9d0aa6ebc38\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:41:17-91
+118-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\long\.gradle\caches\transforms-3\d73e8c38a40f98c8ef0bd9d0aa6ebc38\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:41:25-88
+119            </intent-filter>
+120            <intent-filter>
+120-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\long\.gradle\caches\transforms-3\d73e8c38a40f98c8ef0bd9d0aa6ebc38\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:43:13-45:29
+121                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+121-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\long\.gradle\caches\transforms-3\d73e8c38a40f98c8ef0bd9d0aa6ebc38\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:44:17-85
+121-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\long\.gradle\caches\transforms-3\d73e8c38a40f98c8ef0bd9d0aa6ebc38\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:44:25-82
+122            </intent-filter>
+123            <intent-filter>
+123-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\long\.gradle\caches\transforms-3\d73e8c38a40f98c8ef0bd9d0aa6ebc38\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:46:13-48:29
+124                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+124-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\long\.gradle\caches\transforms-3\d73e8c38a40f98c8ef0bd9d0aa6ebc38\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:47:17-88
+124-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\long\.gradle\caches\transforms-3\d73e8c38a40f98c8ef0bd9d0aa6ebc38\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:47:25-85
+125            </intent-filter>
+126            <intent-filter>
+126-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\long\.gradle\caches\transforms-3\d73e8c38a40f98c8ef0bd9d0aa6ebc38\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:49:13-51:29
+127                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+127-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\long\.gradle\caches\transforms-3\d73e8c38a40f98c8ef0bd9d0aa6ebc38\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:50:17-95
+127-->[androidx.profileinstaller:profileinstaller:1.3.0] C:\Users\long\.gradle\caches\transforms-3\d73e8c38a40f98c8ef0bd9d0aa6ebc38\transformed\jetified-profileinstaller-1.3.0\AndroidManifest.xml:50:25-92
+128            </intent-filter>
+129        </receiver>
+130    </application>
+131
+132</manifest>

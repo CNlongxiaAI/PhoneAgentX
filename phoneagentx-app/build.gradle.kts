@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "com.PhoneAgentX"
+    namespace = "com.phoneagentx"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.PhoneAgentX"
+        applicationId = "com.phoneagentx"
         minSdk = 28
         targetSdk = 34
         versionCode = 1

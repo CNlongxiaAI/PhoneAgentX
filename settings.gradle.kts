@@ -16,9 +16,3 @@ dependencyResolutionManagement {
 
 rootProject.name = "phoneagentx"
 include(":phoneagentx-app")
-
-// Gradle Version Catalog compatible settings
-gradle {
-    wrapperVersion = "8.4"
-    wrapperDistributionType = WrapperDistributionType.BIN
-}

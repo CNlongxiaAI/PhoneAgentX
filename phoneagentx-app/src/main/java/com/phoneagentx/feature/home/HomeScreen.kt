@@ -12,7 +12,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.phoneagentx.PhoneAgentXApp
 import com.phoneagentx.ConnectionState
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -26,7 +25,7 @@ fun HomeScreen(viewModel: HomeViewModel = viewModel()) {
                 title = { Text("PhoneAgentX", fontWeight = FontWeight.Bold) },
                 actions = {
                     IconButton(onClick = { viewModel.refreshStatus() }) {
-                        Icon(Icons.Default.Refresh, contentDescription = "刷新")
+                        Icon(Icons.Default.Refresh, contentDescription = "Refresh")
                     }
                 }
             )
@@ -41,7 +40,7 @@ fun HomeScreen(viewModel: HomeViewModel = viewModel()) {
         ) {
             item { Spacer(modifier = Modifier.height(8.dp)) }
 
-            // 连接状态卡�?            item {
+            item {
                 ConnectionStatusCard(
                     state = uiState.connectionState,
                     onConnect = { viewModel.connect() },
@@ -49,7 +48,6 @@ fun HomeScreen(viewModel: HomeViewModel = viewModel()) {
                 )
             }
 
-            // ADB 配对卡片
             item {
                 AdbPairingCard(
                     isPaired = uiState.isAdbPaired,
@@ -57,17 +55,16 @@ fun HomeScreen(viewModel: HomeViewModel = viewModel()) {
                 )
             }
 
-            // 快捷操作
             item {
-                Text("快捷操作", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
+                Text("Quick Actions", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
             }
 
             items(uiState.quickActions) { action ->
                 QuickActionCard(action = action, onClick = { viewModel.executeQuickAction(action) })
             }
 
-            // 内置技�?            item {
-                Text("内置技�?, style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
+            item {
+                Text("Built-in Skills", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
             }
 
             items(uiState.skills) { skill ->
@@ -105,21 +102,21 @@ fun ConnectionStatusCard(
             Column {
                 Text(
                     text = when (state) {
-                        ConnectionState.CONNECTED -> "已连�?TutuGui"
-                        ConnectionState.AUTHENTICATED -> "已认�?
-                        ConnectionState.CONNECTING -> "连接�?.."
-                        ConnectionState.DISCONNECTED -> "未连�?
-                        ConnectionState.ERROR -> "连接错误"
+                        ConnectionState.CONNECTED -> "Connected"
+                        ConnectionState.AUTHENTICATED -> "Authenticated"
+                        ConnectionState.CONNECTING -> "Connecting..."
+                        ConnectionState.DISCONNECTED -> "Disconnected"
+                        ConnectionState.ERROR -> "Error"
                     },
                     style = MaterialTheme.typography.titleMedium,
                     fontWeight = FontWeight.Bold
                 )
                 Text(
                     text = when (state) {
-                        ConnectionState.CONNECTED, ConnectionState.AUTHENTICATED -> "可以开�?AI 自动�?
-                        ConnectionState.CONNECTING -> "请稍�?
-                        ConnectionState.DISCONNECTED -> "点击连接按钮"
-                        ConnectionState.ERROR -> "请检查手机设�?
+                        ConnectionState.CONNECTED, ConnectionState.AUTHENTICATED -> "Ready for AI automation"
+                        ConnectionState.CONNECTING -> "Please wait..."
+                        ConnectionState.DISCONNECTED -> "Tap connect button"
+                        ConnectionState.ERROR -> "Check phone settings"
                     },
                     style = MaterialTheme.typography.bodySmall
                 )
@@ -131,7 +128,7 @@ fun ConnectionStatusCard(
                 else
                     ButtonDefaults.buttonColors()
             ) {
-                Text(if (state == ConnectionState.CONNECTED || state == ConnectionState.AUTHENTICATED) "断开" else "连接")
+                Text(if (state == ConnectionState.CONNECTED || state == ConnectionState.AUTHENTICATED) "Disconnect" else "Connect")
             }
         }
     }
@@ -148,21 +145,22 @@ fun AdbPairingCard(isPaired: Boolean, onStartPairing: () -> Unit) {
             verticalAlignment = Alignment.CenterVertically
         ) {
             Column {
-                Text("ADB 无线配对", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
+                Text("ADB Wireless Pairing", style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
                 Text(
-                    text = if (isPaired) "已配对（开发者选项中的无线调试�? else "需要配�?ADB",
+                    text = if (isPaired) "Paired (wireless debugging enabled)" else "Pairing required",
                     style = MaterialTheme.typography.bodySmall
                 )
             }
             if (!isPaired) {
-                Button(onClick = onStartPairing) { Text("开始配�?) }
+                Button(onClick = onStartPairing) { Text("Start Pairing") }
             } else {
-                Icon(Icons.Default.CheckCircle, contentDescription = "已配�?, tint = MaterialTheme.colorScheme.primary)
+                Icon(Icons.Default.CheckCircle, contentDescription = "Paired", tint = MaterialTheme.colorScheme.primary)
             }
         }
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun QuickActionCard(action: QuickAction, onClick: () -> Unit) {
     Card(
@@ -177,24 +175,26 @@ fun QuickActionCard(action: QuickAction, onClick: () -> Unit) {
         ) {
             Icon(
                 imageVector = when (action.icon) {
-                    "screenshot" -> Icons.Default.ScreenshotMonitor
+                    "screenshot" -> Icons.Default.Screenshot
                     "explore" -> Icons.Default.Explore
                     "build" -> Icons.Default.Build
                     else -> Icons.Default.Star
                 },
                 contentDescription = null,
-                modifier = Modifier.size(24.dp)
+                modifier = Modifier.size(32.dp),
+                tint = MaterialTheme.colorScheme.primary
             )
             Spacer(modifier = Modifier.width(16.dp))
             Column(modifier = Modifier.weight(1f)) {
-                Text(action.name, style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)
+                Text(action.name, style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Medium)
                 Text(action.description, style = MaterialTheme.typography.bodySmall)
             }
-            Icon(Icons.Default.ChevronRight, contentDescription = null)
+            Icon(Icons.Default.ChevronRight, contentDescription = null, tint = MaterialTheme.colorScheme.outline)
         }
     }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun SkillCard(skill: SkillInfo, onClick: () -> Unit) {
     Card(
@@ -211,22 +211,23 @@ fun SkillCard(skill: SkillInfo, onClick: () -> Unit) {
                 imageVector = when (skill.icon) {
                     "message-circle" -> Icons.Default.Message
                     "play-circle" -> Icons.Default.PlayCircle
-                    "globe" -> Icons.Default.Language
+                    "globe" -> Icons.Default.Public
                     "star" -> Icons.Default.Star
                     else -> Icons.Default.Star
                 },
                 contentDescription = null,
                 modifier = Modifier.size(32.dp),
-                tint = MaterialTheme.colorScheme.primary
+                tint = MaterialTheme.colorScheme.secondary
             )
             Spacer(modifier = Modifier.width(16.dp))
             Column(modifier = Modifier.weight(1f)) {
-                Text(skill.name, style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Bold)
+                Text(skill.name, style = MaterialTheme.typography.titleSmall, fontWeight = FontWeight.Medium)
                 Text(skill.description, style = MaterialTheme.typography.bodySmall)
-                Text("${skill.estimatedTime} · �?${skill.estimatedTokens} tokens", style = MaterialTheme.typography.labelSmall)
+                Text("${skill.estimatedTime} | ~${skill.estimatedTokens} tokens",
+                    style = MaterialTheme.typography.labelSmall, color = MaterialTheme.colorScheme.outline)
             }
-            IconButton(onClick = onClick) {
-                Icon(Icons.Default.PlayArrow, contentDescription = "运行")
+            FilledTonalButton(onClick = onClick) {
+                Text("Run")
             }
         }
     }
